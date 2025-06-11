@@ -27,13 +27,21 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
   Future<void> _loadRate() async {
     final prefs = await SharedPreferences.getInstance();
     double? cachedRate = prefs.getDouble('rate_${widget.trip.country}');
+    double r = cachedRate ?? _defaultRate(widget.trip.country);
+
+    // 일본만 100으로 나눔
+    if (widget.trip.country == '일본') {
+      r = r / 100;
+    }
+
     setState(() {
-      rate = cachedRate ?? _defaultRate(widget.trip.country);
+      rate = r;
       if (amountForeign != null && rate != null) {
         amountKRW = amountForeign! * rate!;
       }
     });
   }
+
 
   // 만약 캐시에 없을 때 사용할 기본 환율
   double _defaultRate(String country) {
