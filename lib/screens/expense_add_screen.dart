@@ -47,7 +47,7 @@ class _ExpenseAddScreenState extends State<ExpenseAddScreen> {
   double _defaultRate(String country) {
     switch (country) {
       case '미국': return 1350;
-      case '일본': return 9.0;
+      case '일본': return 900;
       case '유럽': return 1500;
       case '중국': return 190;
       case '영국': return 1720;
